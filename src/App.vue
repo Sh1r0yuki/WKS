@@ -1,47 +1,32 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div>
+    <h1>🎵 Blindtest Quiz</h1>
+    
+    <!-- Timer -->
+    <Timer :duration="10" @time-up="handleTimeUp" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+    <!-- Lecteur audio avec lecture automatique -->
+    <AudioPlayer src="extrait.mp3" @audio-ended="handleAudioEnd" />
 
-  <main>
-    <TheWelcome />
-  </main>
+    <!-- Réponse de l'utilisateur -->
+    <input v-model="userAnswer" :disabled="timeUp" placeholder="Votre réponse..." />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script setup>
+import { ref } from 'vue';
+import Timer from './components/Timer.vue';
+import AudioPlayer from './components/Autoplay.vue';
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+const userAnswer = ref('');
+const timeUp = ref(false);
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+const handleTimeUp = () => {
+  timeUp.value = true;
+  alert("⏳ Temps écoulé ! Vous ne pouvez plus répondre.");
+};
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+const handleAudioEnd = () => {
+  alert("🎶 L'extrait audio est terminé !");
+};
+</script>
