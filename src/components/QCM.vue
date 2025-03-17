@@ -1,94 +1,57 @@
 <script setup>
-import WelcomeItem from './Autoplay.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
-import CommunityIcon from './icons/IconCommunity.vue'
-import SupportIcon from './icons/IconSupport.vue'
+import { ref, watch } from 'vue'
 
-const openReadmeInEditor = () => fetch('/__open-in-editor?file=README.md')
+const props = defineProps({
+  options: Array,         // Liste des choix possibles
+  correctAnswer: String,  // Réponse correcte
+  resetTrigger: Number    // Permet de reset quand la question change
+})
+
+const emit = defineEmits(['answerSelected'])
+
+const selectedAnswer = ref(null)
+const isDisabled = ref(false) // Bloque les clics après une réponse
+const showAnswerFeedback = ref(false) // Affiche si la réponse est correcte ou incorrecte
+
+const selectAnswer = (answer) => {
+  if (isDisabled.value) return
+
+  selectedAnswer.value = answer
+  isDisabled.value = true // Bloque les autres clics après une réponse
+  showAnswerFeedback.value = true // Affiche la rétroaction sur la réponse
+  emit('answerSelected', answer)
+}
+
+// Réinitialisation lorsque la question change
+watch(() => props.resetTrigger, () => {
+  selectedAnswer.value = null
+  isDisabled.value = false
+  showAnswerFeedback.value = false // Réinitialiser la rétroaction sur la réponse
+})
 </script>
 
 <template>
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
-    <template #heading>Documentation</template>
-
-    Vue’s
-    <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
-    provides you with all information you need to get started.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <ToolingIcon />
-    </template>
-    <template #heading>Tooling</template>
-
-    This project is served and bundled with
-    <a href="https://vite.dev/guide/features.html" target="_blank" rel="noopener">Vite</a>. The
-    recommended IDE setup is
-    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VSCode</a>
-    +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank" rel="noopener">Volar</a>. If
-    you need to test your components and web pages, check out
-    <a href="https://vitest.dev/" target="_blank" rel="noopener">Vitest</a>
-    and
-    <a href="https://www.cypress.io/" target="_blank" rel="noopener">Cypress</a>
-    /
-    <a href="https://playwright.dev/" target="_blank" rel="noopener">Playwright</a>.
-
-    <br />
-
-    More instructions are available in
-    <a href="javascript:void(0)" @click="openReadmeInEditor"><code>README.md</code></a
-    >.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <EcosystemIcon />
-    </template>
-    <template #heading>Ecosystem</template>
-
-    Get official tools and libraries for your project:
-    <a href="https://pinia.vuejs.org/" target="_blank" rel="noopener">Pinia</a>,
-    <a href="https://router.vuejs.org/" target="_blank" rel="noopener">Vue Router</a>,
-    <a href="https://test-utils.vuejs.org/" target="_blank" rel="noopener">Vue Test Utils</a>, and
-    <a href="https://github.com/vuejs/devtools" target="_blank" rel="noopener">Vue Dev Tools</a>. If
-    you need more resources, we suggest paying
-    <a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">Awesome Vue</a>
-    a visit.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <CommunityIcon />
-    </template>
-    <template #heading>Community</template>
-
-    Got stuck? Ask your question on
-    <a href="https://chat.vuejs.org" target="_blank" rel="noopener">Vue Land</a>
-    (our official Discord server), or
-    <a href="https://stackoverflow.com/questions/tagged/vue.js" target="_blank" rel="noopener"
-      >StackOverflow</a
-    >. You should also follow the official
-    <a href="https://bsky.app/profile/vuejs.org" target="_blank" rel="noopener">@vuejs.org</a>
-    Bluesky account or the
-    <a href="https://x.com/vuejs" target="_blank" rel="noopener">@vuejs</a>
-    X account for latest news in the Vue world.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <SupportIcon />
-    </template>
-    <template #heading>Support Vue</template>
-
-    As an independent project, Vue relies on community backing for its sustainability. You can help
-    us by
-    <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
-  </WelcomeItem>
+  <div class="grid grid-cols-2 gap-4">
+    <button v-for="option in options" :key="option" @click="selectAnswer(option)" :class="[
+      'p-3 rounded text-white font-bold transition-all',
+      selectedAnswer
+        ? option === correctAnswer
+          ? 'bg-green-500' // Réponse correcte
+          : option === selectedAnswer
+            ? 'bg-red-500'  // Réponse incorrecte
+            : 'bg-gray-500' // Désactivé après sélection
+        : 'bg-blue-600 hover:bg-blue-700'
+    ]" :disabled="isDisabled">
+      {{ option }}
+    </button>
+    <!-- Affichage d'une rétroaction après la sélection -->
+    <div v-if="showAnswerFeedback">
+      <p :class="[
+        selectedAnswer === correctAnswer ? 'text-green-500' : 'text-red-500',
+        'mt-2 font-bold'
+      ]">
+        {{ selectedAnswer === correctAnswer ? 'Bonne réponse !' : 'Mauvaise réponse !' }}
+      </p>
+    </div>
+  </div>
 </template>
