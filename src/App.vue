@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import axios from 'axios'
-import Autoplay from './components/Autoplay.vue'
+
 import QCM from './components/QCM.vue'
 import Timer from './components/Timer.vue'
 
@@ -112,7 +112,7 @@ onMounted(() => {
     <!-- Si le quiz est en cours -->
     <div v-else-if="currentQuestion">
       <h2>{{ currentQuestion.title }}</h2>
-      
+
       <!-- Lecteur audio -->
       <audio ref="audioRef" :src="currentAudioUrl" preload="auto" />
 

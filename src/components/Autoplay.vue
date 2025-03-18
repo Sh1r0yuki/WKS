@@ -66,7 +66,7 @@ onMounted(() => {
 <template>
   <div class="flex flex-col items-center">
     <!-- Lien audio récupéré depuis l'API -->
-    <audio ref="audioRef" :src="audioSrc" :muted="isMuted" />
+    <audio ref="audioRef" :src="audioSrc"/>
 
     <!-- Bouton pour démarrer la musique -->
     <button v-if="!isPlaying" @click="startAudio"
