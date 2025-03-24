@@ -1,7 +1,6 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watchEffect } from 'vue'
 import axios from 'axios'
-
 import QCM from './components/QCM.vue'
 import Timer from './components/Timer.vue'
 
@@ -12,8 +11,8 @@ const score = ref(0)
 const isQuizFinished = ref(false)
 const currentAudioUrl = ref('')
 const audioRef = ref(null)
-const isTimerActive = ref(true) // Timer activé
-const isAudioPlaying = ref(false) // Indicateur pour savoir si l'audio est en train de jouer
+const isTimerActive = ref(true)
+const isAudioLoading = ref(false) // Empêche le spam de play()
 
 // Récupérer les questions depuis l'API
 const fetchQuestions = async () => {
@@ -35,19 +34,23 @@ const updateAudioUrl = () => {
   }
 }
 
-// Recharger l'audio (gestion de l'événement canplaythrough)
+// Charger et jouer l'audio proprement
 const reloadAudio = () => {
   if (audioRef.value && currentAudioUrl.value) {
+    isAudioLoading.value = true // Indique que l'audio charge
     audioRef.value.src = currentAudioUrl.value
     audioRef.value.load()
 
-    // Attendre que l'audio soit prêt avant de le lire
-    audioRef.value.addEventListener('canplaythrough', () => {
-      isAudioPlaying.value = true
+    // Éviter les conflits en supprimant les anciens écouteurs
+    audioRef.value.oncanplaythrough = null
+
+    // Attendre que l'audio soit prêt avant de jouer
+    audioRef.value.oncanplaythrough = () => {
+      isAudioLoading.value = false // L'audio est prêt
       audioRef.value.play().catch((error) => {
-        console.error("Erreur lors de la lecture de l'audio :", error)
+        console.error("Erreur lecture audio :", error)
       })
-    })
+    }
   }
 }
 
@@ -55,11 +58,16 @@ const reloadAudio = () => {
 const handleAnswer = (answer) => {
   if (isAnswered.value) return
   isAnswered.value = true
-  if (answer === currentQuestion.value.answer) {
+
+  // Vérification en lowercase + suppression des espaces inutiles
+  const userAnswer = answer.toLowerCase().trim()
+  const correctAnswer = currentQuestion.value.answer.toLowerCase().trim()
+
+  if (userAnswer === correctAnswer) {
     score.value += 10
   }
-  // Mettre fin au timer après une réponse correcte
-  isTimerActive.value = false
+  
+  isTimerActive.value = false // Stopper le timer après réponse
 }
 
 // Passer à la question suivante
@@ -67,7 +75,7 @@ const nextQuestion = () => {
   if (currentQuestionIndex.value < questions.value.length - 1) {
     currentQuestionIndex.value++
     isAnswered.value = false
-    isTimerActive.value = true // Réactiver le timer pour la nouvelle question
+    isTimerActive.value = true
     updateAudioUrl()
     reloadAudio()
   } else {
@@ -75,13 +83,12 @@ const nextQuestion = () => {
   }
 }
 
-// Gérer le cas où le temps est écoulé (et changer de question)
+// Gérer le temps écoulé
 const handleTimeUp = () => {
   if (!isAnswered.value) {
-    // Passer à la question suivante si aucune réponse n'a été donnée
     isAnswered.value = true
   }
-  nextQuestion() // Passer à la question suivante lorsque le temps est écoulé
+  nextQuestion()
 }
 
 // Recommencer le quiz
@@ -90,13 +97,23 @@ const restartQuiz = () => {
   score.value = 0
   isQuizFinished.value = false
   isAnswered.value = false
-  isTimerActive.value = true // Réinitialiser le timer
+  isTimerActive.value = true
   updateAudioUrl()
+  reloadAudio()
 }
 
+// Charger les questions au montage
 onMounted(() => {
   fetchQuestions()
-  updateAudioUrl() // Mettre à jour l'audio pour la première question
+  updateAudioUrl()
+})
+
+// Surveiller les changements de question et charger l'audio
+watchEffect(() => {
+  if (currentQuestion.value) {
+    updateAudioUrl()
+    reloadAudio()
+  }
 })
 </script>
 
@@ -114,10 +131,10 @@ onMounted(() => {
       <h2>{{ currentQuestion.title }}</h2>
 
       <!-- Lecteur audio -->
-      <audio ref="audioRef" :src="currentAudioUrl" preload="auto" />
+      <audio ref="audioRef" preload="auto" />
 
       <!-- Timer -->
-      <Timer :initialTime="10" :resetTrigger="currentQuestionIndex" :isActive="isTimerActive" @timeUp="handleTimeUp" />
+      <Timer :initialTime="20" :resetTrigger="currentQuestionIndex" :isActive="isTimerActive" @timeUp="handleTimeUp" />
 
       <!-- QCM -->
       <QCM :options="currentQuestion.content.answers" :correctAnswer="currentQuestion.answer"
