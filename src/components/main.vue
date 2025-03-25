@@ -1,17 +1,42 @@
 <template>
-    <div class="flex flex-col min-h-screen">
-      <Header />
-      <main class="flex-grow p-8 bg-gray-100 text-gray-800">
-        <h1 class="text-4xl font-bold mb-4">Bienvenue sur notre site !</h1>
-        <p class="text-lg">
-          Ceci est le contenu principal de la page. Vous pouvez y ajouter vos sections, vos composants et vos données dynamiques.
-        </p>
-      </main>
-      <Footer />
-    </div>
-  </template>
-  
-  <script setup>
-  import Header from './header.vue'
-  import Footer from './footer.vue'
-  </script>
+  <div class="layout">
+    <Header />
+    <main class="main-content">
+      <h1 class="page-title">Bienvenue sur notre site !</h1>
+      <p class="page-description">
+        Ceci est le contenu principal de la page. Vous pouvez y ajouter vos sections, vos composants et vos données dynamiques.
+      </p>
+    </main>
+    <Footer />
+  </div>
+</template>
+
+<script setup>
+import Header from './header.vue'
+import Footer from './footer.vue'
+</script>
+
+<style scoped>
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: #f3f4f6; /* gray-100 */
+  color: #1f2937; /* gray-800 */
+}
+
+.page-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.page-description {
+  font-size: 1.125rem;
+}
+</style>
