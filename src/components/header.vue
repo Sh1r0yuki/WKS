@@ -2,19 +2,14 @@
   <header class="header">
     <div class="container">
       <h1 class="logo">MonSite</h1>
-      <nav class="nav">
-        <a href="#" class="nav-link">Accueil</a>
-        <a href="#" class="nav-link">À propos</a>
-        <a href="#" class="nav-link">Contact</a>
-      </nav>
     </div>
   </header>
 </template>
 
 <style scoped>
 .header {
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #1e40af; /* Bleu plus foncé */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 1rem 2rem;
 }
 
@@ -27,9 +22,9 @@
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #4f46e5; /* Indigo-600 */
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #e0f2fe; /* Bleu ciel très pâle */
 }
 
 .nav {
@@ -38,12 +33,12 @@
 }
 
 .nav-link {
-  color: #374151; /* Gray-700 */
+  color: #bfdbfe; /* Bleu clair doux */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #4f46e5; /* Indigo-600 */
+  color: #ffffff; /* Blanc pur au survol */
 }
 </style>

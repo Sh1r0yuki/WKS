@@ -1,6 +1,7 @@
 <template>
   <footer class="footer">
     <div class="footer-container">
+      <p class="footer-title">Catégories musicales</p>
       <p class="footer-text">&copy; 2025 MonSite. Tous droits réservés.</p>
     </div>
   </footer>
@@ -8,9 +9,9 @@
 
 <style scoped>
 .footer {
-  background-color: #1f2937; /* gray-800 */
-  color: #ffffff;
-  padding: 1.5rem 0;
+  background-color: #1e3a8a; /* Bleu nuit */
+  color: #e0f2fe; /* Bleu ciel très pâle */
+  padding: 2rem 0;
   margin-top: 2rem;
 }
 
@@ -20,8 +21,9 @@
   text-align: center;
 }
 
-.footer-text {
-  font-size: 0.875rem;
-  margin: 0.25rem 0;
+.footer-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
 </style>
