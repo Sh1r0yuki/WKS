@@ -5,7 +5,7 @@
     <main class="main-content">
       <h1 class="page-title">Bienvenue sur notre site !</h1>
       <p class="page-description">
-        Ceci est le contenu principal de la page. Vous pouvez y ajouter vos sections, vos composants et vos données dynamiques.
+        Choisissez une catégorie de blind test qui vous tente et battez vos amis!
       </p>
 
       <ul class="music-categories">
@@ -16,14 +16,11 @@
         <li class="category">Électro</li>
       </ul>
     </main>
-
-    <Footer />
   </div>
 </template>
 
 <script setup>
 import Header from './header.vue'
-import Footer from './footer.vue'
 </script>
 
 <style scoped>
@@ -78,5 +75,9 @@ import Footer from './footer.vue'
 .footer-text {
   font-size: 0.875rem;
   margin: 0.25rem 0;
+}
+
+h1{
+  text-align: center;
 }
 </style>
