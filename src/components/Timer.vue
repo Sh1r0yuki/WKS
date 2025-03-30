@@ -1,44 +1,41 @@
 <script setup>
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
-  initialTime: Number, // Temps initial (secondes)
-  resetTrigger: Number // Change à chaque nouvelle question pour reset le timer
+  initialTime: Number,
+  resetTrigger: Number,
+  isActive: Boolean
 })
 
 const emit = defineEmits(['timeUp'])
-
 const timeLeft = ref(props.initialTime)
-let interval = null
+let timer = null
 
 const startTimer = () => {
-  clearInterval(interval) // Stopper un ancien timer s'il existe
-  timeLeft.value = props.initialTime // Réinitialiser le temps
+  clearInterval(timer)
+  timeLeft.value = props.initialTime
 
-  interval = setInterval(() => {
-    if (timeLeft.value > 0) {
-      timeLeft.value--
-    } else {
-      clearInterval(interval)
-      emit('timeUp') // Notifie le parent que le temps est écoulé
-    }
-  }, 1000)
+  if (props.isActive) {
+    timer = setInterval(() => {
+      if (timeLeft.value > 0) {
+        timeLeft.value--
+      } else {
+        clearInterval(timer)
+        emit('timeUp')
+      }
+    }, 1000)
+  }
 }
 
-// Redémarrer le timer à chaque nouvelle question
-watch(() => props.resetTrigger, () => {
-  // Délai de 1 seconde avant de redémarrer le timer, pour éviter les conflits
-  setTimeout(startTimer, 1000)
-})
+watch(() => props.resetTrigger, startTimer)
+watch(() => props.isActive, startTimer)
 
 onMounted(startTimer)
+onUnmounted(() => clearInterval(timer))
 </script>
 
 <template>
-  <div :class="[
-    'text-xl font-bold p-2 rounded',
-    timeLeft <= 5 ? 'bg-red-500 text-white' : 'bg-gray-700 text-white'
-  ]">
-    {{ timeLeft }}s
+  <div class="timer">
+    ⏳ Temps restant: {{ timeLeft }}s
   </div>
 </template>

@@ -1,44 +1,45 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
-import axios from 'axios'
+import { ref, watch, onMounted } from 'vue'
 
 const props = defineProps({
-  category: String
+  audioUrl: String,
+  resetTrigger: Number
 })
 
 const audioRef = ref(null)
-const isMuted = ref(false)
-const audioSrc = ref('')
+const isAudioLoading = ref(false)
+const userInteracted = ref(false)
 
-// Récupérer l'URL de l'audio
-const fetchAudioUrl = async () => {
-  try {
-    const { data } = await axios.get('https://quizz-musical-backend.airdev.be/api/categories/2')
-    const questionWithAudio = data.questions?.find(q => q.content?.sound_url)
-    audioSrc.value = questionWithAudio?.content.sound_url || ''
-  } catch (error) {
-    console.error("Erreur récupération audio :", error)
+const reloadAudio = () => {
+  if (audioRef.value && props.audioUrl) {
+    isAudioLoading.value = true
+    audioRef.value.src = props.audioUrl
+    audioRef.value.load()
+    
+    audioRef.value.oncanplaythrough = () => {
+      isAudioLoading.value = false
+      if (userInteracted.value) {
+        audioRef.value.play().catch(error => console.error("Erreur lecture audio :", error))
+      }
+    }
   }
 }
 
-const isPlaying = computed(() => audioRef.value && !audioRef.value.paused)
+// Ensure the audio reloads when the question changes
+watch(() => props.resetTrigger, reloadAudio)
 
-const startAudio = () => {
-  audioRef.value?.play().catch(err => console.error("Erreur lecture :", err))
+// Function to enable audio manually when needed
+const enableAudio = () => {
+  userInteracted.value = true
+  reloadAudio()
 }
 
-const toggleMute = () => {
-  isMuted.value = !isMuted.value
-  if (audioRef.value) {
-    audioRef.value.muted = isMuted.value
-  }
-}
-
-onMounted(fetchAudioUrl)
+onMounted(reloadAudio)
 </script>
 
 <template>
-  <div class="flex flex-col items-center">
-    <audio ref="audioRef" :src="audioSrc" />
+  <div>
+    <audio ref="audioRef" preload="auto"></audio>
+    <button v-if="!userInteracted" @click="enableAudio">🔊 Activer l'audio</button>
   </div>
 </template>
