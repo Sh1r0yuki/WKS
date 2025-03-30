@@ -25,10 +25,10 @@ const reloadAudio = () => {
   }
 }
 
-// Ensure the audio reloads when the question changes
+// Assure le lancement de l'audio quand la question
 watch(() => props.resetTrigger, reloadAudio)
 
-// Function to enable audio manually when needed
+// Fonction pour activer audio quand nécessaire
 const enableAudio = () => {
   userInteracted.value = true
   reloadAudio()

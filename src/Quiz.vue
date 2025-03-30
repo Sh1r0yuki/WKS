@@ -33,7 +33,7 @@ const handleAnswer = (answer) => {
   const userAnswer = answer.toLowerCase().trim();
   const correctAnswer = currentQuestion.value.answer.toLowerCase().trim();
 
-  // Check if the user's answer fully matches OR contains the expected answer
+  // Vérifie si la réponse correspond complétement à celle attendue OU le contient
   if (userAnswer === correctAnswer || userAnswer.includes(correctAnswer)) {
     score.value += 10;
   }
