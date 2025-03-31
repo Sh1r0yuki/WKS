@@ -3,9 +3,9 @@
     <Header />
 
     <main class="main-content">
-      <h1 class="page-title">Bienvenue sur notre site !</h1>
+      <h1 class="page-title">Bienvenue sur notre Blind Test !</h1>
       <p class="page-description">
-        Choisissez une catégorie de blind test qui vous tente et affrontez vos amis !
+        Choisissez un style musical et lancez-vous dans un défi auditif entre amis. Qui saura reconnaître le plus de titres&nbsp;?
       </p>
 
       <ul class="music-categories">
@@ -19,6 +19,7 @@
 
 <script setup>
 import Header from './header.vue'
+import Footer from './footer.vue'
 
 const categories = ['Pop', 'Rock', 'Jazz', 'Classique', 'Électro']
 </script>
@@ -28,6 +29,9 @@ const categories = ['Pop', 'Rock', 'Jazz', 'Classique', 'Électro']
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: linear-gradient(135deg, #e0f2fe, #c7d2fe);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1e3a8a;
 }
 
 .main-content {
@@ -37,61 +41,40 @@ const categories = ['Pop', 'Rock', 'Jazz', 'Classique', 'Électro']
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  background-color: #f0f9ff;
-  color: #1e3a8a;
   text-align: center;
-  width: 100%;
 }
 
 .page-title {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2rem;
   margin-bottom: 1rem;
 }
 
 .page-description {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  max-width: 600px;
   margin-bottom: 2rem;
 }
 
 .music-categories {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  max-width: 62.5rem;
-  width: 100%;
-  padding: 0;
-  margin: 0;
   list-style: none;
-}
-
-.category {
+  padding: 0;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .category-button {
-  background-color: #3b82f6;
-  border: none;
-  border-radius: 0.5rem;
+  background-color: #1e3a8a;
+  color: #ffffff;
   padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  color: white;
-  font-weight: 500;
+  border: none;
+  border-radius: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  width: 100%;
-  max-width: 200px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 .category-button:hover {
-  background-color: #60a5fa;
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-}
-
-.category-button:focus {
-  outline: 2px solid #1e3a8a;
-  outline-offset: 2px;
+  background-color: #374fcf;
 }
 </style>
