@@ -1,7 +1,9 @@
 <template>
   <div>
-    <h1>Quiz Musical</h1>
-
+    <h1>Paroles de chansons</h1>
+    <div class="app-container">
+    <Input />
+    </div>
     <div v-if="question">
       <p>{{ question.intitule }}</p>
       
@@ -13,6 +15,7 @@
         :points="question.points"
         @question-suivante="chargerQuestionSuivante"
       />
+      <Bouton @rejouer="restartGame" @retour-menu="goToMenu" />
     </div>
 
     <p v-else>Chargement de la question...</p>
@@ -23,11 +26,13 @@
 <script>
 import Input from "./components/Input.vue";
 import Answer from "./components/Answer.vue";
+import Bouton from "./components/Bouton.vue";
 
 export default {
   components: {
     Input,
     Answer,
+    Bouton,
   },
   data() {
     return {
@@ -44,7 +49,7 @@ export default {
   methods: {
     async chargerQuestions() {
       try {
-        const response = await fetch("https://quizz-musical-backend.airdev.be/api");
+        const response = await fetch("https://quizz-musical-backend.airdev.be");
         this.questions = await response.json();
         this.chargerQuestionSuivante();
       } catch (error) {
@@ -69,6 +74,24 @@ export default {
         this.score += this.question.points;
       }
     },
+      restartGame() {
+      console.log("Nouvelle partie !");
+      // Logique pour redémarrer la partie
+    },
+    goToMenu() {
+      console.log("Retour au menu !");
+      // Logique pour retourner au menu principal
+    },
   },
 };
+
 </script>
+<style scoped>
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000; /* Fond noir */
+}
+</style>
