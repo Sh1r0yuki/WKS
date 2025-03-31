@@ -1,7 +1,6 @@
 <template>
   <footer class="footer">
     <div class="footer-container">
-      <p class="footer-title">Catégories musicales</p>
       <p class="footer-text">&copy; 2025 MonSite. Tous droits réservés.</p>
     </div>
   </footer>
