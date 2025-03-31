@@ -1,7 +1,9 @@
 <template>
   <footer class="footer">
     <div class="footer-container">
-      <p class="footer-text">&copy; 2025 Instablind. Tous droits réservés.</p>
+      <p class="footer-text">
+        &copy; 2025. Tous droits réservés.
+      </p>
     </div>
   </footer>
 </template>
@@ -10,8 +12,9 @@
 .footer {
   background-color: #1e3a8a;
   color: #e0f2fe;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
   margin-top: auto;
+  border-top: 3px solid #3b82f6;
 }
 
 .footer-container {
@@ -22,6 +25,6 @@
 
 .footer-text {
   font-size: 1rem;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 </style>

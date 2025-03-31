@@ -3,9 +3,9 @@
     <Header />
 
     <main class="main-content">
-      <h1 class="page-title">Bienvenue sur notre Blind Test !</h1>
+      <h1 class="page-title">Bienvenue sur notre site de BlindTest</h1>
       <p class="page-description">
-        Choisissez un style musical et lancez-vous dans un défi auditif entre amis. Qui saura reconnaître le plus de titres&nbsp;?
+        Sélectionne un style musical et mesure-toi à tes amis dans ce défi auditif. Qui aura l’oreille la plus affûtée&nbsp;?
       </p>
 
       <ul class="music-categories">
@@ -14,6 +14,8 @@
         </li>
       </ul>
     </main>
+
+
   </div>
 </template>
 
@@ -40,19 +42,21 @@ const categories = ['Pop', 'Rock', 'Jazz', 'Classique', 'Électro']
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 3rem 1rem;
   text-align: center;
 }
 
 .page-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
+  font-weight: 600;
 }
 
 .page-description {
-  font-size: 1.2rem;
-  max-width: 600px;
-  margin-bottom: 2rem;
+  font-size: 1.3rem;
+  max-width: 640px;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
 }
 
 .music-categories {
@@ -60,21 +64,24 @@ const categories = ['Pop', 'Rock', 'Jazz', 'Classique', 'Électro']
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 1rem;
 }
 
 .category-button {
   background-color: #1e3a8a;
   color: #ffffff;
-  padding: 0.75rem 1.5rem;
+  padding: 0.8rem 1.6rem;
   border: none;
   border-radius: 1rem;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .category-button:hover {
   background-color: #374fcf;
+  transform: scale(1.05);
 }
 </style>
