@@ -1,9 +1,9 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import axios from 'axios'
-import QCM from './components/QCM.vue'
-import Timer from './components/Timer.vue'
-import Autoplay from './components/Autoplay.vue'
+import QCM from '../components/QCM.vue'
+import Timer from '../components/Timer.vue'
+import Autoplay from '../components/Autoplay.vue'
 
 const questions = ref([])
 const currentQuestionIndex = ref(0)
