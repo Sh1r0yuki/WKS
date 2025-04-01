@@ -49,5 +49,17 @@
   .btn-secondary:hover {
     background-color: #333;
   }
+  @media screen and (max-width: 768px) {
+  .buttons-container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
   </style>
   

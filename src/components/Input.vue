@@ -6,7 +6,11 @@
       <div class="question-content">
         <!-- Vérifier si content et lyrics sont définis avant de les afficher -->
         <p v-if="currentQuestion.content && currentQuestion.content.lyrics">
-          <strong>Compléter les paroles :</strong> {{ currentQuestion.content.lyrics }}
+          <strong>Compléter les paroles :</strong>
+          <br />
+          <span v-for="(line, index) in nettoyerHTML(currentQuestion.content.lyrics).split('\n')" :key="index">
+            {{ line }}<br />
+          </span>
         </p>
         <p v-if="currentQuestion.content && currentQuestion.content.song_title">
           <strong>Titre de la chanson :</strong> {{ currentQuestion.content.song_title }}
@@ -23,18 +27,22 @@
           placeholder="Entrez votre réponse ici"
           class="answer-input"
         />
-        <button @click="checkAnswer" class="answer-btn">Vérifier la réponse</button>
+        <button v-if="!answerMessage" @click="checkAnswer" class="answer-btn">
+          Vérifier la réponse
+        </button>
       </div>
 
-      <p v-if="answerMessage" class="answer-message">{{ answerMessage }}</p>
+      <p v-if="answerMessage" :class="{ 'correct': isCorrect, 'wrong': !isCorrect }">
+        {{ answerMessage }}
+      </p>
 
       <button
-        v-if="answerMessage"
-        @click="nextQuestion"
-        class="next-question-btn"
-      >
-        Question suivante
-      </button>
+      v-if="currentQuestionIndex + 1 < questions.length"
+      @click="nextQuestion"
+      class="next-question-btn"
+    >
+      Question suivante
+    </button>
     </div>
   </div>
 </template>
@@ -53,29 +61,37 @@ const answerMessage = ref('');
 // Fonction pour récupérer les données de l'API
 const fetchQuestions = async () => {
   try {
-    const response = await axios.get("https://quizz-musical-backend.airdev.be/api/questions");
+    const response = await axios.get("https://quizz-musical-backend.airdev.be/api/categories/1");
     const data = response.data;
-    console.log(data);
 
-    // Filtrer les questions actives (is_active = 1)
-    questions.value = data.filter(item => item.is_active === 1);
-    
+    console.log("Données reçues :", data);
+
+    // Vérifier si "questions" existe et est un tableau
+    if (data.questions && Array.isArray(data.questions)) {
+      questions.value = data.questions.filter(item => item.is_active === 1 && item.content?.lyrics);
+    } else {
+      console.error("La clé 'questions' est absente ou n'est pas un tableau :", data);
+    }
+
     if (questions.value.length > 0) {
       currentQuestion.value = questions.value[currentQuestionIndex.value];
     } else {
-      console.error('Aucune question active disponible');
+      console.error('Aucune question active avec paroles disponible');
     }
   } catch (error) {
     console.error('Erreur lors de la récupération des questions :', error);
   }
 };
 
+
 // Fonction pour vérifier la réponse de l'utilisateur
 const checkAnswer = () => {
   if (userAnswer.value.trim().toLowerCase() === currentQuestion.value.answer.toLowerCase()) {
-    answerMessage.value = `Réponse correcte : Vous gagnez ${currentQuestion.value.points} points.`;
+    isCorrect.value = true;
+    answerMessage.value = `✅ Réponse correcte : Vous gagnez ${currentQuestion.value.points} points.`;
   } else {
-    answerMessage.value = 'Réponse fausse : Vous ne gagnez rien.';
+    isCorrect.value = false;
+    answerMessage.value = "❌ Réponse fausse : Vous ne gagnez rien.";
   }
 };
 
@@ -90,7 +106,13 @@ const nextQuestion = () => {
     console.log('Fin du quiz');
   }
 };
-
+const nettoyerHTML = (texte) => {
+  if (!texte) return "";
+  return texte
+    .replace(/<br\s*\/?>/gi, "\n") // Convertit <br> en sauts de ligne
+    .replace(/<\/?[^>]+(>|$)/g, ""); // Supprime les autres balises HTML
+};
+const isCorrect = ref(false);
 // Appel de la fonction fetchQuestions lorsque le composant est monté
 onMounted(fetchQuestions);
 </script>
@@ -161,7 +183,7 @@ onMounted(fetchQuestions);
 }
 
 .answer-message {
-  color: violet;
+  color: rgb(255, 0, 0);
   margin-top: 10px;
   font-size: 1.1rem;
   font-weight: bold;
@@ -181,4 +203,45 @@ onMounted(fetchQuestions);
 .next-question-btn:hover {
   background-color: #218838;
 }
+.answer-btn, .next-question-btn {
+  width: 100%;
+  max-width: 200px;
+  margin-top: 10px;
+}
+
+.next-question-btn {
+  background-color: #28a745;
+}
+
+.next-question-btn:hover {
+  background-color: #218838;
+}
+.correct {
+  color: green;
+  font-weight: bold;
+}
+
+.wrong {
+  color: red;
+  font-weight: bold;
+}
+@media screen and (max-width: 768px) {
+  .quiz-container {
+    padding: 10px;
+  }
+
+  .quiz-card {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .answer-input {
+    width: 100%;
+  }
+
+  .answer-btn, .next-question-btn {
+    width: 100%;
+  }
+}
+
 </style>
