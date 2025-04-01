@@ -27,6 +27,7 @@
 import Input from "./components/Input.vue";
 import Answer from "./components/Answer.vue";
 import Bouton from "./components/Bouton.vue";
+import axios from 'axios';
 
 export default {
   components: {
@@ -46,16 +47,16 @@ export default {
   async created() {
     await this.chargerQuestions();
   },
-  methods: {
-    async chargerQuestions() {
-      try {
-        const response = await fetch("https://quizz-musical-backend.airdev.be");
-        this.questions = await response.json();
-        this.chargerQuestionSuivante();
-      } catch (error) {
-        console.error("Erreur lors du chargement des questions :", error);
-      }
-    },
+    methods: {
+      async chargerQuestions() {
+    try {
+      const response = await axios.get("https://quizz-musical-backend.airdev.be/api/categories/1");
+      this.questions = response.data; // Avec Axios, la réponse est déjà transformée en JSON
+      this.chargerQuestionSuivante();
+    } catch (error) {
+      console.error("Erreur lors du chargement des questions :", error);
+    }
+  },
     chargerQuestionSuivante() {
       if (this.indexQuestion < this.questions.length) {
         this.question = this.questions[this.indexQuestion];

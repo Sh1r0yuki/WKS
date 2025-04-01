@@ -53,8 +53,9 @@ const answerMessage = ref('');
 // Fonction pour récupérer les données de l'API
 const fetchQuestions = async () => {
   try {
-    const response = await axios.get('https://quizz-musical-backend.airdev.be/api/categories/1');
+    const response = await axios.get("https://quizz-musical-backend.airdev.be/api/questions");
     const data = response.data;
+    console.log(data);
 
     // Filtrer les questions actives (is_active = 1)
     questions.value = data.filter(item => item.is_active === 1);
@@ -160,6 +161,7 @@ onMounted(fetchQuestions);
 }
 
 .answer-message {
+  color: violet;
   margin-top: 10px;
   font-size: 1.1rem;
   font-weight: bold;
