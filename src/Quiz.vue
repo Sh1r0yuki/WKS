@@ -93,11 +93,58 @@ onMounted(() => {
       <h2>{{ currentQuestion.title }}</h2>
 
       <Autoplay :audioUrl="currentQuestion.content.sound_url" :resetTrigger="currentQuestionIndex" />
-      <Timer :initialTime="20" :resetTrigger="currentQuestionIndex" :isActive="isTimerActive" @timeUp="handleTimeUp" />
-      <QCM :options="currentQuestion.content.answers" :correctAnswer="currentQuestion.answer" :resetTrigger="currentQuestionIndex" @answerSelected="handleAnswer" />
+      <Timer :initialTime="10" :resetTrigger="currentQuestionIndex" :isActive="isTimerActive" @timeUp="handleTimeUp" />
+      <QCM :options="currentQuestion.content.answers" :correctAnswer="currentQuestion.answer"
+        :resetTrigger="currentQuestionIndex" @answerSelected="handleAnswer" />
       <p>Score : {{ score }} points</p>
     </div>
 
     <div v-else>Chargement...</div>
   </div>
 </template>
+
+<style>
+.quiz-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #121212;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  background: linear-gradient(135deg, #ff8c00, #ff3b3b);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s, opacity 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+</style>
