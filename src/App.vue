@@ -15,13 +15,13 @@
 
       <ul class="music-categories">
         <li class="category">
-          <button class="category-button" aria-label="Choisir la catégorie Rock">Rock</button>
+          <button class="category-button" aria-label="Choisir la catégorie Rock">Catégorie 1</button>
         </li>
         <li class="category">
-          <button class="category-button" aria-label="Choisir la catégorie Pop">Pop</button>
+          <button class="category-button" aria-label="Choisir la catégorie Pop">Catégorie 2</button>
         </li>
         <li class="category">
-          <button class="category-button" aria-label="Choisir la catégorie Jazz">Jazz</button>
+          <button class="category-button" aria-label="Choisir la catégorie Jazz">Catégorie 3</button>
         </li>
       </ul>
     </main>
