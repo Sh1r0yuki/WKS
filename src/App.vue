@@ -11,22 +11,68 @@
 
         <ul class="music-categories" role="list">
           <li class="category" role="listitem">
-            <button class="category-button" aria-label="Sélectionner la catégorie Rock">Rock</button>
+            <button 
+              class="category-button" 
+              aria-label="Sélectionner la catégorie Rock"
+              @click="selectCategory('Rock')"
+            >
+              Rock
+            </button>
           </li>
           <li class="category" role="listitem">
-            <button class="category-button" aria-label="Sélectionner la catégorie Pop">Pop</button>
+            <button 
+              class="category-button" 
+              aria-label="Sélectionner la catégorie Pop"
+              @click="selectCategory('Pop')"
+            >
+              Pop
+            </button>
           </li>
           <li class="category" role="listitem">
-            <button class="category-button" aria-label="Sélectionner la catégorie Jazz">Jazz</button>
+            <button 
+              class="category-button" 
+              aria-label="Sélectionner la catégorie Jazz"
+              @click="selectCategory('Jazz')"
+            >
+              Jazz
+            </button>
           </li>
           <li class="category" role="listitem">
-            <button class="start-button" aria-label="Démarrer le BlindTest">C'est parti&nbsp;!</button>
+            <button 
+              class="start-button" 
+              aria-label="Démarrer le BlindTest"
+              @click="startQuiz"
+            >
+              C'est parti&nbsp;!
+            </button>
           </li>
         </ul>
       </section>
     </main>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      selectedCategory: null,
+    };
+  },
+  methods: {
+    startQuiz() {
+      if (this.selectedCategory) {
+        this.$router.push(`/quiz?category=${this.selectedCategory}`);
+      } else {
+        alert('Merci de sélectionner une catégorie avant de commencer.');
+      }
+    },
+    selectCategory(category) {
+      this.selectedCategory = category;
+    },
+  },
+};
+</script>
 
 <style scoped>
 :root,
@@ -119,9 +165,11 @@ body {
   color: #ffffff;
 }
 
-.category-button:hover {
+.category-button:hover,
+.category-button:focus {
   background-color: #3b5bdb;
   transform: scale(1.05);
+  outline: none;
 }
 
 .start-button {
@@ -131,8 +179,10 @@ body {
   font-size: 1.2rem;
 }
 
-.start-button:hover {
+.start-button:hover,
+.start-button:focus {
   background-color: #22c55e;
   transform: scale(1.05);
+  outline: none;
 }
 </style>
