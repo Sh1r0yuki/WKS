@@ -1,6 +1,7 @@
 <template>
   <div class="layout">
     <Header />
+
     <main class="main-content">
       <h1 class="page-title">Bienvenue sur notre BlindTest musical</h1>
       <p class="page-description">
@@ -10,6 +11,7 @@
       <div class="loader" aria-live="polite">
         Chargement des catégories...
       </div>
+
 
       <ul class="music-categories">
         <li class="category">
