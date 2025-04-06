@@ -2,7 +2,6 @@
   <div class="layout">
     <Header />
     <main class="main-content">
-            </button>
       <Main />
     </main>
     <footer>
