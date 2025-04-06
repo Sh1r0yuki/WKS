@@ -3,47 +3,16 @@
     <Header />
 
     <main class="main-content">
-      <section class="content-wrapper">
-        <h1 class="page-title">Bienvenue sur notre BlindTest musical</h1>
+      <section class="content-wrapper" aria-labelledby="main-title">
+        <h1 id="main-title" class="page-title">Bienvenue sur notre BlindTest musical</h1>
         <p class="page-description">
-          Plonge dans l’univers de la musique&nbsp;! Choisis ton style préféré et lance-toi dans un quiz sonore palpitant. Qui saura reconnaître le plus de morceaux&nbsp;?
+          Plonge dans l’univers de la musique&nbsp;! Choisis ton style préféré et lance-toi dans un quiz sonore palpitant.
+          Qui saura reconnaître le plus de morceaux&nbsp;?
         </p>
-
         <ul class="music-categories" role="list">
           <li class="category" role="listitem">
-            <button 
-              class="category-button" 
-              aria-label="Sélectionner la catégorie Rock"
-              @click="selectCategory('Rock')"
-            >
-              Rock
-            </button>
-          </li>
-          <li class="category" role="listitem">
-            <button 
-              class="category-button" 
-              aria-label="Sélectionner la catégorie Pop"
-              @click="selectCategory('Pop')"
-            >
-              Pop
-            </button>
-          </li>
-          <li class="category" role="listitem">
-            <button 
-              class="category-button" 
-              aria-label="Sélectionner la catégorie Jazz"
-              @click="selectCategory('Jazz')"
-            >
-              Jazz
-            </button>
-          </li>
-          <li class="category" role="listitem">
-            <button 
-              class="start-button" 
-              aria-label="Démarrer le BlindTest"
-              @click="startQuiz"
-            >
-              C'est parti&nbsp;!
+            <button class="start-button" @click="startQuiz">
+              C'est parti
             </button>
           </li>
         </ul>
@@ -52,25 +21,11 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      selectedCategory: null,
-    };
-  },
-  methods: {
-    startQuiz() {
-      if (this.selectedCategory) {
-        this.$router.push(`/quiz?category=${this.selectedCategory}`);
-      } else {
-        alert('Merci de sélectionner une catégorie avant de commencer.');
-      }
-    },
-    selectCategory(category) {
-      this.selectedCategory = category;
-    },
-  },
+<script setup>
+// Tu peux gérer ici l’événement du bouton de démarrage
+const startQuiz = () => {
+  // Par exemple : router.push('/quiz') si tu utilises Vue Router
+  console.log('Quiz lancé');
 };
 </script>
 
@@ -111,6 +66,7 @@ body {
   flex-direction: column;
   align-items: center;
   max-width: 700px;
+  animation: fadeIn 0.6s ease-in-out;
 }
 
 .page-title {
@@ -134,18 +90,11 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.2rem;
-  animation: fadeIn 0.6s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.category {
+  display: flex;
+  justify-content: center;
 }
 
 .category-button,
@@ -184,5 +133,16 @@ body {
   background-color: #22c55e;
   transform: scale(1.05);
   outline: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
