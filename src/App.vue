@@ -1,35 +1,25 @@
 <template>
   <div class="layout">
     <Header />
-
     <main class="main-content">
-      <section class="content-wrapper" aria-labelledby="main-title">
-        <h1 id="main-title" class="page-title">Bienvenue sur notre BlindTest musical</h1>
-        <p class="page-description">
-          Plonge dans l’univers de la musique&nbsp;! Choisis ton style préféré et lance-toi dans un quiz sonore palpitant.
-          Qui saura reconnaître le plus de morceaux&nbsp;?
-        </p>
-        <ul class="music-categories" role="list">
-          <li class="category" role="listitem">
-            <button class="start-button" @click="startQuiz">
-              C'est parti
             </button>
-          </li>
-        </ul>
-      </section>
+      <Main />
     </main>
+    <footer>
+      <Footer />
+    </footer>
   </div>
 </template>
 
 <script setup>
-// Tu peux gérer ici l’événement du bouton de démarrage
-const startQuiz = () => {
-  // Par exemple : router.push('/quiz') si tu utilises Vue Router
-  console.log('Quiz lancé');
-};
+// 🧩 Importation des composants
+import Header from './components/Header.vue'
+import Main from './components/Main.vue'
+import Footer from './components/Footer.vue'
 </script>
 
 <style scoped>
+/* 🌐 Base et reset */
 :root,
 html,
 body {
@@ -40,17 +30,19 @@ body {
 
 body {
   overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* 🧱 Layout principal */
 .layout {
   display: flex;
   flex-direction: column;
   height: 100dvh;
   background: linear-gradient(135deg, #e0f2fe, #c7d2fe);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #1e3a8a;
 }
 
+/* 🧩 Contenu principal */
 .main-content {
   flex: 1;
   display: flex;
@@ -61,6 +53,7 @@ body {
   width: 100%;
 }
 
+/* 📦 Conteneur interne */
 .content-wrapper {
   display: flex;
   flex-direction: column;
@@ -69,6 +62,7 @@ body {
   animation: fadeIn 0.6s ease-in-out;
 }
 
+/* 📝 Titre de la page */
 .page-title {
   font-size: 2.7rem;
   margin-bottom: 1rem;
@@ -76,6 +70,7 @@ body {
   text-shadow: 1px 1px 2px #c7d2fe;
 }
 
+/* 📄 Description de la page */
 .page-description {
   font-size: 1.4rem;
   margin-bottom: 2.5rem;
@@ -83,6 +78,7 @@ body {
   color: #334155;
 }
 
+/* 🎵 Liste de catégories musicales */
 .music-categories {
   list-style: none;
   padding: 0;
@@ -97,6 +93,7 @@ body {
   justify-content: center;
 }
 
+/* 🔘 Boutons */
 .category-button,
 .start-button {
   padding: 1rem 2rem;
@@ -109,6 +106,7 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Bouton de catégorie */
 .category-button {
   background-color: #1e3a8a;
   color: #ffffff;
@@ -121,6 +119,7 @@ body {
   outline: none;
 }
 
+/* Bouton "Démarrer" */
 .start-button {
   background-color: #16a34a;
   color: #ffffff;
@@ -135,6 +134,7 @@ body {
   outline: none;
 }
 
+/* ✨ Animation d’apparition */
 @keyframes fadeIn {
   from {
     opacity: 0;
