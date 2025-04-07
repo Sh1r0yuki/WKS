@@ -37,12 +37,12 @@
       </p>
 
       <button
-      v-if="currentQuestionIndex + 1 < questions.length"
-      @click="nextQuestion"
-      class="next-question-btn"
-    >
-      Question suivante
-    </button>
+  v-if="answerMessage && currentQuestionIndex + 1 < questions.length"
+  @click="nextQuestion"
+  class="next-question-btn"
+>
+  Question suivante
+</button>
     </div>
   </div>
 </template>

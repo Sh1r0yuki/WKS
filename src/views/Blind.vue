@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import axios from 'axios'
@@ -105,102 +104,44 @@ onMounted(() => {
 </template>
 
 <style>
+/* Blind.vue */
 .quiz-container {
-  max-width: 600px;
-  margin: 50px auto;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-h2 {
-  font-size: 24px;
-  margin-bottom: 15px;
-}
-
-p {
-  font-size: 18px;
-  font-weight: 300;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #121212;
-  color: #fff;
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border-radius: 20px;
   text-align: center;
-  margin: 0;
-  padding: 0;
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-button {
+.quiz-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.quiz-container p {
+  font-size: 1.1rem;
+  margin-top: 20px;
+}
+
+.quiz-container button {
   background: linear-gradient(135deg, #ff8c00, #ff3b3b);
   color: white;
+  padding: 12px 24px;
   border: none;
-  padding: 12px 20px;
-  font-size: 16px;
+  border-radius: 10px;
+  margin-top: 25px;
   cursor: pointer;
-  border-radius: 8px;
-  transition: transform 0.2s, opacity 0.3s;
+  font-size: 16px;
+  transition: transform 0.2s ease, opacity 0.3s ease;
 }
 
-button:hover {
+.quiz-container button:hover {
   transform: scale(1.05);
   opacity: 0.9;
 }
+
 </style>
-=======
-<template>
-    <div class="quiz-container">
-      <h1>Quiz Musical</h1>
-      <Input @reponse-saisie="verifierReponse" />
-      <Answer v-if="bonneReponse !== null" :estCorrecte="bonneReponse" :points="question.points" />
-    </div>
-  </template>
-  
-  <script>
-  import Input from '../components/Input.vue';
-  import Answer from '../components/Answer.vue';
-  
-  export default {
-    components: {
-      Input,
-      Answer,
-    },
-    data() {
-      return {
-        bonneReponse: null,
-        question: null,
-      };
-    },
-    methods: {
-      verifierReponse(reponseUtilisateur) {
-        // Logique de vérification de la réponse
-        if (reponseUtilisateur.trim().toLowerCase() === this.question.reponseCorrecte.toLowerCase()) {
-          this.bonneReponse = true;
-        } else {
-          this.bonneReponse = false;
-        }
-      },
-    },
-    mounted() {
-      // Appeler la fonction pour charger les questions (comme tu faisais précédemment)
-      this.chargerQuestions();
-    },
-    methods: {
-      chargerQuestions() {
-        // Logique pour charger les questions depuis l'API
-        // par exemple axios.get('https://...')
-      },
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .quiz-container {
-    text-align: center;
-    margin-top: 20px;
-  }
-  </style>
-  
->>>>>>> Cedric
