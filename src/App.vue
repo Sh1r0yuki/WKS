@@ -1,135 +1,53 @@
 <template>
   <div class="layout">
     <Header />
-    <main class="main-content">
-      <Main />
-    </main>
-    <footer>
-      <Footer />
-    </footer>
+    <Main />
+    <Footer />
   </div>
 </template>
 
 <script setup>
-import Header from './components/header.vue'
-import Main from './components/main.vue'
-import Footer from './components/footer.vue'
+  import Header from './components/header.vue'
+  import Main from './components/main.vue'
+  import Footer from './components/footer.vue'
 </script>
 
 <style scoped>
-:root,
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-}
-
-body {
-  overflow-x: hidden;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
 }
 
 .layout {
   display: flex;
   flex-direction: column;
-  height: 100dvh;
-  background: linear-gradient(135deg, #e0f2fe, #c7d2fe);
-  color: #1e3a8a;
+  min-height: 100vh;
+  width: 100vw;
 }
 
-.main-content {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem 1rem;
-  text-align: center;
+.header {
   width: 100%;
+  background: #1e3a8a;
+  color: white;
+  padding: 1rem;
+  text-align: center;
 }
 
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 700px;
-  animation: fadeIn 0.6s ease-in-out;
+.main {
+  flex: 1;
+  width: 100%;
+  background: #e0f2fe;
+  padding: 2rem;
+  text-align: center;
 }
 
-.page-title {
-  font-size: 2.7rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  text-shadow: 1px 1px 2px #c7d2fe;
-}
-
-.page-description {
-  font-size: 1.4rem;
-  margin-bottom: 2.5rem;
-  line-height: 1.7;
-  color: #334155;
-}
-
-.music-categories {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.2rem;
-}
-
-.category {
-  display: flex;
-  justify-content: center;
-}
-
-.category-button,
-.start-button {
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 1rem;
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.category-button {
-  background-color: #1e3a8a;
-  color: #ffffff;
-}
-
-.category-button:hover,
-.category-button:focus {
-  background-color: #3b5bdb;
-  transform: scale(1.05);
-  outline: none;
-}
-
-.start-button {
-  background-color: #16a34a;
-  color: #ffffff;
-  padding: 1.6rem 4rem;
-  font-size: 1.2rem;
-}
-
-.start-button:hover,
-.start-button:focus {
-  background-color: #22c55e;
-  transform: scale(1.05);
-  outline: none;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.footer {
+  width: 100%;
+  background: #3b82f6;
+  color: white;
+  padding: 1rem;
+  text-align: center;
 }
 </style>
