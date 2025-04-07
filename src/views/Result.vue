@@ -15,7 +15,7 @@
     },
     methods: {
       goHome() {
-        this.$router.push('/'); // Redirige vers la page d'accueil
+        this.$router.push('/Home'); // Redirige vers la page d'accueil
       },
     },
     mounted() {
