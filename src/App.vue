@@ -11,14 +11,12 @@
 </template>
 
 <script setup>
-// 🧩 Importation des composants
-import Header from './components/Header.vue'
-import Main from './components/Main.vue'
-import Footer from './components/Footer.vue'
+import Header from './components/header.vue'
+import Main from './components/main.vue'
+import Footer from './components/footer.vue'
 </script>
 
 <style scoped>
-/* 🌐 Base et reset */
 :root,
 html,
 body {
@@ -32,7 +30,6 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* 🧱 Layout principal */
 .layout {
   display: flex;
   flex-direction: column;
@@ -41,7 +38,6 @@ body {
   color: #1e3a8a;
 }
 
-/* 🧩 Contenu principal */
 .main-content {
   flex: 1;
   display: flex;
@@ -52,7 +48,6 @@ body {
   width: 100%;
 }
 
-/* 📦 Conteneur interne */
 .content-wrapper {
   display: flex;
   flex-direction: column;
@@ -61,7 +56,6 @@ body {
   animation: fadeIn 0.6s ease-in-out;
 }
 
-/* 📝 Titre de la page */
 .page-title {
   font-size: 2.7rem;
   margin-bottom: 1rem;
@@ -69,7 +63,6 @@ body {
   text-shadow: 1px 1px 2px #c7d2fe;
 }
 
-/* 📄 Description de la page */
 .page-description {
   font-size: 1.4rem;
   margin-bottom: 2.5rem;
@@ -77,7 +70,6 @@ body {
   color: #334155;
 }
 
-/* 🎵 Liste de catégories musicales */
 .music-categories {
   list-style: none;
   padding: 0;
@@ -92,7 +84,6 @@ body {
   justify-content: center;
 }
 
-/* 🔘 Boutons */
 .category-button,
 .start-button {
   padding: 1rem 2rem;
@@ -105,7 +96,6 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Bouton de catégorie */
 .category-button {
   background-color: #1e3a8a;
   color: #ffffff;
@@ -118,7 +108,6 @@ body {
   outline: none;
 }
 
-/* Bouton "Démarrer" */
 .start-button {
   background-color: #16a34a;
   color: #ffffff;
@@ -133,7 +122,6 @@ body {
   outline: none;
 }
 
-/* ✨ Animation d’apparition */
 @keyframes fadeIn {
   from {
     opacity: 0;

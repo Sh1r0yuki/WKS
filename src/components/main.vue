@@ -1,10 +1,10 @@
 <template>
     <main class="main">
       <section class="intro-section">
-        <h2 class="intro-title">Bienvenue dans le Blind Test musical !</h2>
+        <h2 class="intro-title">Bienvenue dans le Blind Test musical!</h2>
         <p class="intro-text">
           Teste tes connaissances musicales en devinant des chansons à partir d’extraits audio.
-          Saura-tu reconnaître tous les titres et devenir le champion du son ?
+          Saura-tu reconnaître tous les titres et devenir le champion du son?
         </p>
         <button class="start-button">Commencer le jeu</button>
       </section>
