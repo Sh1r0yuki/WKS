@@ -1,7 +1,12 @@
 <template>
   <header class="header">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <h1 class="logo">Blind Test</h1>
+=======
+    <h1 class="title">Instachef</h1>
+    <!-- Autres éléments du header ici -->
+>>>>>>> Stashed changes
 =======
     <h1 class="title">Instachef</h1>
     <!-- Autres éléments du header ici -->
@@ -10,6 +15,7 @@
 </template>
 
 <style scoped>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 *, *::before, *::after {
   box-sizing: border-box;
@@ -20,6 +26,8 @@ header{
 }
 
 =======
+=======
+>>>>>>> Stashed changes
 .header {
   background-color: #0f0f0f; /* noir profond */
   padding: 1.5rem 2rem;
@@ -34,5 +42,8 @@ header{
   color: #ffffff;
   letter-spacing: 1px;
 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 </style>
