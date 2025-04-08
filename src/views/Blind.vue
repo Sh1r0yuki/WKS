@@ -93,7 +93,7 @@ onMounted(() => {
       <h2>{{ currentQuestion.title }}</h2>
 
       <Autoplay :audioUrl="currentQuestion.content.sound_url" :resetTrigger="currentQuestionIndex" />
-      <Timer :initialTime="10" :resetTrigger="currentQuestionIndex" :isActive="isTimerActive" @timeUp="handleTimeUp" />
+      <Timer :initialTime="15" :resetTrigger="currentQuestionIndex" :isActive="isTimerActive" @timeUp="handleTimeUp" />
       <QCM :options="currentQuestion.content.answers" :correctAnswer="currentQuestion.answer"
         :resetTrigger="currentQuestionIndex" @answerSelected="handleAnswer" />
       <p>Score : {{ score }} points</p>
