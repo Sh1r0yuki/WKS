@@ -1,29 +1,39 @@
-# WKS
+# WKS - Web Kitchen Studio
 
-This template should help get you started developing with Vue 3 in Vite.
+Bienvenue dans **WKS (Web Kitchen Studio)**, un projet de démarrage moderne basé sur **Vue 3** et propulsé par **Vite**. Ce modèle est conçu pour vous offrir un environnement de développement rapide, simple à configurer, et parfaitement adapté à la création d'interfaces dynamiques et performantes.
 
-## Recommended IDE Setup
+## Configuration recommandée de l’environnement de développement
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Pour une expérience optimale, nous vous recommandons d’utiliser :
 
-## Customize configuration
+- [Visual Studio Code](https://code.visualstudio.com/)
+- L’extension [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (veillez à désactiver Vetur si elle est installée)
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Personnalisation de la configuration
 
-## Project Setup
+Vous pouvez adapter la configuration selon vos besoins en consultant la documentation officielle de Vite :  
+👉 [Guide de configuration Vite](https://vite.dev/config/)
 
-```sh
+## Installation du projet
+
+Clonez le dépôt puis installez les dépendances avec la commande suivante :
+
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+## Lancer le serveur de développement (hot-reload activé)
 
-```sh
+```bash
 npm run dev
 ```
 
-### Compile and Minify for Production
+## Générer une version optimisée pour la production
 
-```sh
+```bash
 npm run build
 ```
+
+---
+
+Ce projet constitue une base solide pour développer des applications Vue.js modernes. N'hésitez pas à le personnaliser, ajouter des composants, et structurer votre code selon les bonnes pratiques de l'écosystème Vue 3.

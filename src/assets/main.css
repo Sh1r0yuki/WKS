@@ -1,5 +1,7 @@
+/* Importation des styles de base */
 @import './base.css';
 
+/* Conteneur principal de l'application */
 #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -7,6 +9,7 @@
   font-weight: normal;
 }
 
+/* Liens et éléments avec classe .green */
 a,
 .green {
   text-decoration: none;
@@ -15,12 +18,14 @@ a,
   padding: 3px;
 }
 
+/* Effet au survol pour les liens */
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
   }
 }
 
+/* Mise en page pour écrans larges */
 @media (min-width: 1024px) {
   body {
     display: flex;
