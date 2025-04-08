@@ -60,6 +60,6 @@ button {
 }
 
 button:hover {
-  background-color: #17a34a;
+  background-color: lightgreen;
 }
 </style>

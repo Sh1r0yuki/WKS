@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="footer-section">
-      <p>© 2025. Tous droits réservés.</p>
+      <p>© 2025 Blindtest. Tous droits réservés.</p>
     </div>
   </footer>
 </template>

@@ -15,9 +15,9 @@ header{
 }
 
 .header {
-  background-color: #0f0f0f; /* noir profond */
+  background-color: #0f0f0f;
   padding: 1.5rem 2rem;
-  color: #f5f5f5; /* gris très clair */
+  color: #f5f5f5;
   border-bottom: 1px solid #2a2a2a;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
