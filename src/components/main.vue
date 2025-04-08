@@ -4,8 +4,8 @@
       <h2>Bienvenue sur notre site de blind test&nbsp;!</h2>
       <p>Testez vos connaissances musicales dans une ambiance ludique et conviviale.</p>
       <div class="button-group">
-        <button @click="goToParoles">Blind Test Paroles</button>
-        <button @click="goToBlind">Blind Test Musical</button>
+        <button @click="startQuiz">Blind Test Paroles</button>
+        <button @click="startQuizz">Blind Test Musical</button>
       </div>
     </section>
   </main>
@@ -13,15 +13,15 @@
 
 <script>
 export default {
-  name: "HomePage",
   methods: {
-    goToParoles() {
-      this.$router.push('/Paroles');
+      startQuiz() {
+        this.$router.push('./component//Paroles'); // Redirige vers le quiz
+      },
+      startQuizz() {
+        this.$router.push('./component/Blind'); // Redirige vers le quizz
+      },
     },
-    goToBlind() {
-      this.$router.push('/Blind');
-    }
-  }
+
 };
 </script>
 
