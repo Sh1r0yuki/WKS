@@ -99,7 +99,7 @@ onMounted(() => {
       <p>Score : {{ score }} points</p>
     </div>
 
-    <div v-else>Chargement...</div>
+    <div v-else>Erreur lors du chargement de l'API</div>
   </div>
 </template>
 
