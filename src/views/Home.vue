@@ -1,6 +1,6 @@
 <template>
     <div class="home-container">
-      <h1>Bienvenue sur le Quiz Musical</h1>
+      <h1>Quiz Musical</h1>
       <button @click="startQuiz">Paroles de chansons</button>
       <button @click="startQuizz">Blind test</button>
     </div>

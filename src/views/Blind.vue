@@ -35,7 +35,7 @@ const handleAnswer = (answer) => {
 
   // Vérifie si la réponse correspond complétement à celle attendue OU le contient
   if (userAnswer === correctAnswer || userAnswer.includes(correctAnswer)) {
-    score.value += 10;
+    score.value += currentQuestion.value.points;
   }
 
   isTimerActive.value = false;
@@ -84,9 +84,9 @@ onMounted(() => {
 <template>
   <div class="quiz-container">
     <div v-if="isQuizFinished">
-      <h2>Quiz terminé ! 🎉</h2>
+      <h2>Quiz terminé ! </h2>
       <p>Score final : {{ score }} points</p>
-      <button @click="restartQuiz">🔄 Rejouer</button>
+      <button @click="restartQuiz">Rejouer</button>
     </div>
 
     <div v-else-if="currentQuestion">

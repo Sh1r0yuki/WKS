@@ -36,7 +36,6 @@ onUnmounted(() => clearInterval(timer))
 
 <template>
   <div class="timer">
-    ⏳ Temps restant: {{ timeLeft }}s
+    Temps restant: {{ timeLeft }}s
   </div>
 </template>
-
