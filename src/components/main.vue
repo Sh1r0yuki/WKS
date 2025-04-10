@@ -14,14 +14,13 @@
 <script>
 export default {
   methods: {
-      startQuiz() {
-        this.$router.push('./component//Paroles'); // Redirige vers le quiz
-      },
-      startQuizz() {
-        this.$router.push('./component/Blind'); // Redirige vers le quizz
-      },
+    startQuiz() {
+      this.$router.push('/Paroles'); // Redirige vers le quiz Paroles
     },
-
+    startQuizz() {
+      this.$router.push('/Blind'); // Redirige vers le quiz Musical
+    },
+  },
 };
 </script>
 
