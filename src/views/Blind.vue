@@ -58,14 +58,17 @@ const nextQuestion = () => {
     isAnswered.value = false
     isTimerActive.value = true
   } else {
+    sessionStorage.setItem('quiz-score', score.value)
+    sessionStorage.setItem('quiz-questions', JSON.stringify(questions.value.map(q => ({ points: q.points }))))
     // Redirige vers la page de résultats en passant les props via query
     router.push({
       name: 'Result',
-      query: {
+      state: {
         score: score.value,
-        questions: JSON.stringify(questions.value.map(q => ({ points: q.points })))
+        questions: questions.value.map(q => ({ points: q.points }))
       }
     })
+
 
   }
 }

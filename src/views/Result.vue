@@ -1,12 +1,14 @@
 <script setup>
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 const route = useRoute()
 const router = useRouter()
 
-const score = Number(route.query.score || 0)
-const questions = JSON.parse(route.query.questions || '[]')
+// Accéder aux données depuis la navigation
+const score = Number(sessionStorage.getItem('quiz-score') || 0)
+const questions = JSON.parse(sessionStorage.getItem('quiz-questions') || '[]')
 const total = questions.reduce((sum, q) => sum + q.points, 0)
+
 
 const restart = () => {
   router.push('/')
