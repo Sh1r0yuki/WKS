@@ -106,21 +106,32 @@ onMounted(() => {
   <div class="quiz-container">
     <div v-if="isQuizFinished">
       <h2>Quiz terminé !</h2>
-      <p>Score final : {{ score }} points</p>
       <button @click="restartQuiz">Rejouer</button>
     </div>
 
     <div v-else-if="currentQuestion">
       <h2>{{ currentQuestion.title }}</h2>
 
-      <Autoplay :audioUrl="currentQuestion.content.sound_url" :resetTrigger="currentQuestionIndex" />
-      <Timer :initialTime="15" :resetTrigger="currentQuestionIndex" :isActive="isTimerActive" @timeUp="handleTimeUp" />
+      <Autoplay
+        :audioUrl="currentQuestion.content.sound_url"
+        :resetTrigger="currentQuestionIndex"
+      />
+      <Timer
+        :initialTime="15"
+        :resetTrigger="currentQuestionIndex"
+        :isActive="isTimerActive"
+        @timeUp="handleTimeUp"
+      />
 
-      <QCM :options="currentQuestion.content.answers" :correctAnswer="currentQuestion.answer"
-        :resetTrigger="currentQuestionIndex" @answerSelected="handleAnswer" />
+      <QCM
+        :options="currentQuestion.content.answers"
+        :correctAnswer="currentQuestion.answer"
+        :resetTrigger="currentQuestionIndex"
+        @answerSelected="handleAnswer"
+      />
 
       <p class="feedback" v-if="feedback">{{ feedback }}</p>
-      <p>Score : {{ score }} points</p>
+      <p>Score : {{ score }} points</p> 
     </div>
 
     <div v-else>
@@ -128,6 +139,8 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+
 
 <style>
 .quiz-container {
