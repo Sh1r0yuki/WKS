@@ -4,7 +4,9 @@ import axios from 'axios'
 import QCM from '../components/QCM.vue'
 import Timer from '../components/Timer.vue'
 import Autoplay from '../components/Autoplay.vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const questions = ref([])
 const currentQuestionIndex = ref(0)
 const isAnswered = ref(false)
@@ -56,7 +58,15 @@ const nextQuestion = () => {
     isAnswered.value = false
     isTimerActive.value = true
   } else {
-    isQuizFinished.value = true
+    // Redirige vers la page de résultats en passant les props via query
+    router.push({
+      name: 'Result',
+      query: {
+        score: score.value,
+        questions: JSON.stringify(questions.value.map(q => ({ points: q.points })))
+      }
+    })
+
   }
 }
 
@@ -64,7 +74,7 @@ const nextQuestion = () => {
 const handleTimeUp = () => {
   if (!isAnswered.value) {
     isAnswered.value = true
-    feedback.value = `⏱️ Temps écoulé ! La bonne réponse était : "${currentQuestion.value.answer}".`
+    feedback.value = `Temps écoulé ! La bonne réponse était : "${currentQuestion.value.answer}".`
 
     setTimeout(() => {
       feedback.value = ''
@@ -101,19 +111,10 @@ onMounted(() => {
       <h2>{{ currentQuestion.title }}</h2>
 
       <Autoplay :audioUrl="currentQuestion.content.sound_url" :resetTrigger="currentQuestionIndex" />
-      <Timer 
-        :initialTime="15" 
-        :resetTrigger="currentQuestionIndex" 
-        :isActive="isTimerActive" 
-        @timeUp="handleTimeUp" 
-      />
-      
-      <QCM 
-        :options="currentQuestion.content.answers" 
-        :correctAnswer="currentQuestion.answer"
-        :resetTrigger="currentQuestionIndex" 
-        @answerSelected="handleAnswer" 
-      />
+      <Timer :initialTime="15" :resetTrigger="currentQuestionIndex" :isActive="isTimerActive" @timeUp="handleTimeUp" />
+
+      <QCM :options="currentQuestion.content.answers" :correctAnswer="currentQuestion.answer"
+        :resetTrigger="currentQuestionIndex" @answerSelected="handleAnswer" />
 
       <p class="feedback" v-if="feedback">{{ feedback }}</p>
       <p>Score : {{ score }} points</p>
