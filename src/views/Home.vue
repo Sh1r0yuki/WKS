@@ -1,22 +1,25 @@
 <template>
-
+  <div class="home-container">
+    <h1>Quiz Musical</h1>
+    <button @click="goToParoles">Paroles de chansons</button>
+    <button @click="goToBlind">Blind test</button>
+  </div>
 </template>
-  
-  <script>
-  export default {
-    methods: {
-      startQuiz() {
-        this.$router.push('/Paroles'); // Redirige vers le quiz
-      },
-      startQuizz() {
-        this.$router.push('/Blind'); // Redirige vers le quizz
-      },
+
+<script>
+export default {
+  methods: {
+    goToParoles() {
+      this.$router.push('/Paroles'); // Redirige vers la page Paroles
     },
-  };
-  </script>
-  
-  <style scoped>
-  /* Home.vue */
+    goToBlind() {
+      this.$router.push('/Blind');   // Redirige vers la page Blind
+    }
+  }
+}
+</script>
+
+<style scoped>
 .home-container {
   max-width: 700px;
   margin: 80px auto;
@@ -51,6 +54,4 @@
   transform: scale(1.05);
   opacity: 0.9;
 }
-
-  </style>
-  
+</style>
