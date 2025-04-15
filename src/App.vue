@@ -1,6 +1,11 @@
-<<<<<<< HEAD
+<script setup>
+import { RouterView } from 'vue-router'
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+</script>
+
 <template>
-  <div class="layout">
+  <div id="app" class="layout">
     <Header />
 
     <main class="main-content">
@@ -12,7 +17,6 @@
       <div class="loader" aria-live="polite">
         Chargement des catégories...
       </div>
-
 
       <ul class="music-categories">
         <li class="category">
@@ -27,11 +31,21 @@
       </ul>
     </main>
 
+    <RouterView />
     <Footer />
   </div>
 </template>
 
 <style scoped>
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #121212;
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
 .layout {
   display: flex;
   flex-direction: column;
@@ -114,25 +128,4 @@
   background-color: #374fcf;
   transform: scale(1.05);
 }
-=======
-<script setup>
-import { RouterView } from 'vue-router'
-</script>
-
-<template>
-  <div id="app">
-    <RouterView /> 
-  </div>
-</template>
-
-<style>
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #121212;
-  color: white;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
->>>>>>> e653a7ecb8a1b69a976e521f536520731cb701d8
 </style>
