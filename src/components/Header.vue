@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <nav class="nav">
-      <h1 class="title">Instachef BlindTest</h1>
+      <h1 class="title">BlindTest</h1>
     </nav>
   </header>
 </template>
@@ -39,5 +39,9 @@ import { RouterLink } from 'vue-router'
 
 .nav-link:hover {
   color: #a5b4fc;
+}
+
+h1 {
+  text-align: center;
 }
 </style>
