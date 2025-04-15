@@ -36,8 +36,6 @@ const selectAnswer = (option) => {
 
 <style scoped>
 .qcm-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr; 
   gap: 15px; 
   max-width: 500px;
   margin: 20px auto;
@@ -64,7 +62,6 @@ const selectAnswer = (option) => {
 
 @media (max-width: 600px) {
   .qcm-container {
-    grid-template-columns: 1fr; 
   }
 }
 </style>
